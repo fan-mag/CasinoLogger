@@ -3,7 +3,9 @@ package webservice
 
 import com.google.gson.Gson
 import helpers.Database
+import helpers.Logger
 import model.Event
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -19,20 +21,14 @@ open class WebServiceApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             Database()
-            //SpringApplication.run(WebServiceApplication::class.java)
-            WebServiceApplication().log("""
-                {
-                    "service":"test1",
-                    "message":"test-message1"
-                }
-            """.trimIndent())
+            SpringApplication.run(WebServiceApplication::class.java)
         }
     }
 
     @PostMapping("/log")
     fun log(@RequestBody requestBody: String): ResponseEntity<Any> {
-        val gson = Gson().fromJson(requestBody, Event::class.java)
-        println(gson.id)
-        return ResponseEntity(gson, HttpStatus.OK)
+        val event = Gson().fromJson(requestBody, Event::class.java)
+        Logger.log(event)
+        return ResponseEntity(event, HttpStatus.OK)
     }
 }

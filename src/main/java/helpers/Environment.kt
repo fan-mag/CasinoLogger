@@ -14,7 +14,6 @@ class Environment {
             properties.load(FileReader("src\\main\\resources\\database.properties"))
             databaseUrl = properties.getProperty("db.url")
             databaseDriver = properties.getProperty("db.driver")
-            println("inited")
         }
     }
 
