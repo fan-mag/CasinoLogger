@@ -11,7 +11,7 @@ class Environment {
 
         init {
             val properties = Properties()
-            properties.load(FileReader("src\\main\\resources\\database.properties"))
+            properties.load(FileReader("src/main/resources/database.properties"))
             databaseUrl = properties.getProperty("db.url")
             databaseDriver = properties.getProperty("db.driver")
         }
