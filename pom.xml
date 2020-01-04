@@ -6,7 +6,7 @@
 
     <groupId>CasinoLogger</groupId>
     <artifactId>CasinoLogger</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${CasinoLogger.version}</version>
 
     <properties>
         <kotlin.version>1.3.61</kotlin.version>
@@ -16,6 +16,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
