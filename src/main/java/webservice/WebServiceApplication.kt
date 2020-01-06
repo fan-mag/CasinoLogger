@@ -2,6 +2,7 @@ package webservice
 
 
 import CasinoLib.model.Event
+import CasinoLib.services.CasinoLibrary
 import com.google.gson.Gson
 import helpers.Database
 import helpers.Logger
@@ -21,6 +22,7 @@ open class WebServiceApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             Database()
+            CasinoLibrary.init("src/main/resources/casinolib.properties")
             SpringApplication.run(WebServiceApplication::class.java)
         }
     }
