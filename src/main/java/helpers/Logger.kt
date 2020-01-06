@@ -1,6 +1,6 @@
 package helpers
 
-import model.Event
+import CasinoLib.model.Event
 import java.sql.PreparedStatement
 
 class Logger {

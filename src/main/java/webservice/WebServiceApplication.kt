@@ -1,10 +1,10 @@
 package webservice
 
 
+import CasinoLib.model.Event
 import com.google.gson.Gson
 import helpers.Database
 import helpers.Logger
-import model.Event
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.HttpStatus
