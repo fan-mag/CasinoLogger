@@ -3,7 +3,7 @@ package webservice
 
 import CasinoLib.model.Event
 import CasinoLib.services.CasinoLibrary
-import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import helpers.Database
 import helpers.Logger
 import org.springframework.boot.SpringApplication
@@ -29,8 +29,8 @@ open class WebServiceApplication {
 
     @PostMapping("/log")
     fun log(@RequestBody requestBody: String): ResponseEntity<Any> {
-        val event = Gson().fromJson(requestBody, Event::class.java)
-        Logger.log(event)
-        return ResponseEntity(event, HttpStatus.OK)
+        val events = GsonBuilder().create().fromJson(requestBody, Array<Event>::class.java)
+        Logger.log(events)
+        return ResponseEntity(events, HttpStatus.OK)
     }
 }
