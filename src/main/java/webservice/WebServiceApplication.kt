@@ -10,9 +10,11 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.scheduling.annotation.Async
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import java.util.concurrent.Callable
 
 @SpringBootApplication
 @RestController
@@ -27,10 +29,11 @@ open class WebServiceApplication {
         }
     }
 
+    @Async
     @PostMapping("/log")
-    fun log(@RequestBody requestBody: String): ResponseEntity<Any> {
+    open fun log(@RequestBody requestBody: String): Callable<ResponseEntity<*>> {
         val events = GsonBuilder().create().fromJson(requestBody, Array<Event>::class.java)
         Logger.log(events)
-        return ResponseEntity(events, HttpStatus.OK)
+        return Callable { ResponseEntity(events, HttpStatus.OK) }
     }
 }
